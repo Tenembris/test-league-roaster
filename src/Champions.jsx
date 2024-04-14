@@ -15,7 +15,7 @@ const Champions = () => {
       .then(data => {
         setCurrentPatch(data.patchVersion);
 
-        axios.get(`https://ddragon.leagueoflegends.com/cdn/${data.patchVersion}/data/en_US/champion.json`)
+        axios.get(`https://ddragon.leagueoflegends.com/cdn/14.7.1/data/en_US/champion.json`)
           .then(response => {
             const championData = response.data.data;
             

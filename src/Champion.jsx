@@ -5,7 +5,7 @@ import axios from 'axios';
 const Champion = () => {
   const { name } = useParams();
   const location = useLocation();
-  const patchVersion = location.state && location.state.patchVersion;
+  const patchVersion = '14.7.1';
 
   const [championData, setChampionData] = useState(null);
   const [imageName, setImageName] = useState('');
@@ -33,7 +33,7 @@ const Champion = () => {
 
         imageName = exceptions[imageName] || imageName;
         setImageName(imageName);
-        const response = await axios.get(`https://ddragon.leagueoflegends.com/cdn/${patchVersion}/data/en_US/champion/${imageName}.json`);
+        const response = await axios.get(`https://ddragon.leagueoflegends.com/cdn/14.7.1/data/en_US/champion/${imageName}.json`);
 
         setChampionData(response.data.data[imageName]);
         setSelectedSpell(response.data.data[imageName].spells[0]);
@@ -189,7 +189,7 @@ const Champion = () => {
             {championData.spells.map((spell, index) => (
               <div key={index} className='spell' onClick={() => handleSpellClick(spell, index)}>
                 <img
-                  src={`https://ddragon.leagueoflegends.com/cdn/${patchVersion}/img/spell/${spell.image.full}`}
+                  src={`https://ddragon.leagueoflegends.com/cdn/14.7.1/img/spell/${spell.image.full}`}
                   alt={spell.name}
                 />
                 <div className='spell-details'>
@@ -199,7 +199,7 @@ const Champion = () => {
             ))}
             <div className='spell' onClick={() => handleSpellClick(championData.passive, 4)}>
               <img
-                src={`https://ddragon.leagueoflegends.com/cdn/${patchVersion}/img/passive/${championData.passive.image.full}`}
+                src={`https://ddragon.leagueoflegends.com/cdn/14.7.1/img/passive/${championData.passive.image.full}`}
                 alt={championData.passive.name}
               />
               <div className='spell-details'>
