@@ -134,12 +134,18 @@ nav {
   z-index: 300000;
   top: 0;
   width: 100%;
-  background-color: black;
+  /* From https://css.glass */
+background: rgba(0, 0, 0, 0.29);
+
+box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+backdrop-filter: blur(6.9px);
+-webkit-backdrop-filter: blur(6.9px);
+
 }
 
 
 nav ul li a{
-  
+  color: white;
   text-decoration: none;
 }
 
@@ -150,11 +156,11 @@ nav ul {
   gap: 1em;
 
 }
-
+/* 
 .component-parent-container {
-  margin-top: 50px;
+
   
-}
+} */
 
 .Champion-section-Hero {
   padding-top: 20em;
@@ -422,3 +428,87 @@ video {
       }
     }
 
+.hero-section{
+  height: 75vh;
+  width: 100%;
+  position: relative;
+  font-size: 50px;
+  color: #ffffffee;
+  text-shadow: 0px 0px 20px #000;
+  box-shadow: -1px -37px 26px 17px rgba(0,0,0,0.86) inset;
+-webkit-box-shadow: -1px -37px 26px 17px rgba(0,0,0,0.86) inset;
+-moz-box-shadow: -1px -37px 26px 17px rgba(0,0,0,0.86) inset;
+  
+}
+
+.video-hero {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.8;
+  box-shadow: none;
+  top: 0;
+  object-position: center top;
+  position: absolute;
+  
+}
+
+.hero-section h1 {
+  top: 30%;
+  left: 10%;
+  padding: 0;
+  margin: 0;
+  z-index: 100000;
+  position: absolute;
+  width: 45%;
+}
+
+.black-gradient{
+  background: linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.9) 100%);
+  position: absolute;
+  width: 100%;
+  height: 40%;
+  bottom: 0;
+  left: 0;
+}
+
+.black-gradient-top{
+  background: linear-gradient(180deg, rgba(0,0,0,1) 0%, rgba(0,0,0,8) 50%, rgba(0,0,0,0.0) 100%);
+  
+  width: 100%;
+  height: 30vh;
+  bottom: 0;
+  left: 0;
+}
+
+.option-section {
+  height: 100vh;
+  width: 100%;
+  position: relative;
+  font-size: 50px;
+  background: url('/img/summoners-rift.jpg');
+  background-size: cover;
+}
+
+
+.option-card-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: auto;
+  position: absolute;
+  top: -7%;
+  
+  width: 100%;
+  gap: 2em;
+}
+
+
+.option-card {
+  width: 300px;
+  height: 250px;
+  background-color: red;
+  background-image: url("/img/League-of-legends-9073196.jpg");
+  background-size: cover;
+  color: black;
+}
