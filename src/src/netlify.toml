@@ -1,6 +1,0 @@
-[build]
-  command = "npm run build"  # Komenda do budowania frontendu
-  publish = "dist"           # Katalog, z którego Netlify będzie serwował Twoją aplikację frontendową
-
-[dev]
-  command = "npm run dev"   # Komenda do uruchamiania aplikacji lokalnie (opcjonalne)

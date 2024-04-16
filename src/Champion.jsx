@@ -130,7 +130,7 @@ const Champion = () => {
             <ul>
               
               
-              <li><img src="../src/statmodsattackdamageicon.png" alt="" /> {championData.stats.attackdamage} + {championData.stats.attackdamageperlevel} per level</li>
+              <li><img src="../src/assets/statmodsattackdamageicon" alt="" /> {championData.stats.attackdamage} + {championData.stats.attackdamageperlevel} per level</li>
               
               <li><img src="../src/StatModsAttackSpeedIcon.png" alt="" /> {championData.stats.attackspeed} + {championData.stats.attackspeedperlevel } per level</li>
               
