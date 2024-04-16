@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams, useLocation } from 'react-router-dom';
 import axios from 'axios';
 
+
 const Champion = () => {
   const { name } = useParams();
   const location = useLocation();
@@ -120,22 +121,22 @@ const Champion = () => {
 </div>
           <div className='stats-spec-info'>
             <ul>
-              <li> <img src="../src/statmodshealthscalingicon.png" alt="" />  {championData.stats.hp} + {championData.stats.hpperlevel} per level</li>
+              <li> <img src="/src/img/statmodshealthscalingicon.png" alt="" />  {championData.stats.hp} + {championData.stats.hpperlevel} per level</li>
               
-              <li> <img src="../src/statmodsmagicresicon.png" alt="" /> {championData.stats.spellblock} + {championData.stats.spellblockperlevel} per level</li>
+              <li> <img src="/src/img/statmodsmagicresicon.png" alt="" /> {championData.stats.spellblock} + {championData.stats.spellblockperlevel} per level</li>
               
-              <li><img src="../src/StatModsHealthPlusIcon.png" alt="" /> {championData.stats.hpregen} + {championData.stats.hpregenperlevel} per level</li>
-              <li> <img src="../src/StatModsArmoricon.png" alt="" />{championData.stats.armor} + {championData.stats.armorperlevel} per level</li>
+              <li><img src="/src/img/StatModsHealthPlusIcon.png" alt="" /> {championData.stats.hpregen} + {championData.stats.hpregenperlevel} per level</li>
+              <li> <img src="/src/img/StatModsArmoricon.png" alt="" />{championData.stats.armor} + {championData.stats.armorperlevel} per level</li>
             </ul>
             <ul>
               
               
-              <li><img src="../src/assets/statmodsattackdamageicon" alt="" /> {championData.stats.attackdamage} + {championData.stats.attackdamageperlevel} per level</li>
+              <li><img src="/src/img/statmodsattackdamageicon.png" alt="" /> {championData.stats.attackdamage} + {championData.stats.attackdamageperlevel} per level</li>
               
-              <li><img src="../src/StatModsAttackSpeedIcon.png" alt="" /> {championData.stats.attackspeed} + {championData.stats.attackspeedperlevel } per level</li>
+              <li><img src="/src/img/StatModsAttackSpeedIcon.png" alt="" /> {championData.stats.attackspeed} + {championData.stats.attackspeedperlevel } per level</li>
               
-              <li> <img src="../src/range-icon.png"  style={{ padding: '9px' }} alt="" />  {championData.stats.attackrange}</li>
-              <li> <img src="../src/StatModsMovementSpeedIcon.png" alt="" />  {championData.stats.movespeed}</li>
+              <li> <img src="/src/img/range-icon.png"  style={{ padding: '9px' }} alt="" />  {championData.stats.attackrange}</li>
+              <li> <img src="/src/img/StatModsMovementSpeedIcon.png" alt="" />  {championData.stats.movespeed}</li>
             </ul>
           </div>
         </div>
@@ -166,7 +167,7 @@ const Champion = () => {
 <div className="additional-ability-videos">
   {abilityVideoLink === null ? (
     <div className="passive-video-placeholder">
-      <img src="../src/placeholder.jpeg" alt="Passive Ability Placeholder" />
+      <img src="../src/img/placeholder.jpeg" alt="Passive Ability Placeholder" />
       <h3>There is no video for this ability</h3>
     </div>
   ) : (
