@@ -361,3 +361,59 @@ video {
         font-size: 1em;
       }
     }
+
+    @media only screen and (max-width: 767px) {
+
+      .padding{
+        padding-left: 1em;
+        padding-right: 1em;
+        padding-top: 1em;
+      }
+
+      .champion-lore {
+        font-size: 1.5em;
+      }
+
+      video {
+        width: 100%;
+        height: auto;
+      }
+
+      .champion-information {
+        flex-direction: column;
+        align-items: center;
+        margin-top: 8em;
+      }
+
+      .Champion-section-Hero h1 {
+        font-size: 6em;
+        top: 90%;
+      }
+
+      .Champion-section-Hero h2 {
+        width: 100%;
+        font-size: 1.5em;
+        text-align: center;
+        top: 90%;
+      }
+
+      .Champion-section-Hero {
+        padding-top: 20em;
+      }
+
+      .champion-tips {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .champion-tips ul {
+        width: 100%;
+        margin-top: 5%;
+        padding: 0;
+        border: none;
+      }
+      .selected-spell-info {
+        width: 100%;
+      }
+    }
+
