@@ -415,5 +415,10 @@ video {
       .selected-spell-info {
         width: 100%;
       }
+
+      .stats-box {
+        margin-left: 0;
+       
+      }
     }
 
