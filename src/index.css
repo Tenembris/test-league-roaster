@@ -61,7 +61,13 @@ body {
     transition: transform 0.3s ease;
     background-repeat: no-repeat;
     background-size: cover;
+    cursor: pointer;
+    transition: opacity 0.5s ease-in-out;
     
+  }
+
+  .champion-item-wrapper.loaded {
+    opacity: 1; /* Ustawienie pełnej przezroczystości na 1 po załadowaniu obrazka */
   }
   
   .champion-info-min {
@@ -176,7 +182,7 @@ nav ul {
 
 
 .Champion-section-Hero h1{
-  font-size: 8.5em;
+  font-size: 9.5em;
   
 
 }
@@ -185,7 +191,7 @@ nav ul {
 .padding {
   padding-left: 10em;
   padding-right: 10em;
-  padding-top: 7em;
+  padding-top: 6em;
 }
 
 
@@ -223,8 +229,11 @@ font-weight: 800;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 2em;
+  padding: 5em 2em 1em 2em; /* top right bottom left */
+
   margin-bottom: 15%;
+  
+
 }
 
 .champion-information div {
@@ -507,8 +516,8 @@ video {
 .option-card {
   width: 300px;
   height: 250px;
-  background-color: red;
-  background-image: url("/img/League-of-legends-9073196.jpg");
+  
+  overflow: hidden;
   background-size: cover;
   color: black;
 }

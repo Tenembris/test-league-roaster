@@ -121,22 +121,22 @@ const Champion = () => {
 </div>
           <div className='stats-spec-info'>
             <ul>
-              <li> <img src="/img/statmodshealthscalingicon.png" alt="" />  {championData.stats.hp} + {championData.stats.hpperlevel} per level</li>
+              <li> <img src="/img/statmodshealthscalingicon.webp" alt=""  fetchPriority='high'/>  {championData.stats.hp} + {championData.stats.hpperlevel} per level</li>
               
-              <li> <img src="/img/statmodsmagicresicon.png" alt="" /> {championData.stats.spellblock} + {championData.stats.spellblockperlevel} per level</li>
+              <li> <img src="/img/statmodsmagicresicon.webp" alt="" fetchPriority='high'/> {championData.stats.spellblock} + {championData.stats.spellblockperlevel} per level</li>
               
-              <li><img src="/img/StatModsHealthPlusIcon.png" alt="" /> {championData.stats.hpregen} + {championData.stats.hpregenperlevel} per level</li>
-              <li> <img src="/img/StatModsArmorIcon.png" alt="" />{championData.stats.armor} + {championData.stats.armorperlevel} per level</li>
+              <li><img src="/img/StatModsHealthPlusIcon.webp" alt="" /> {championData.stats.hpregen} + {championData.stats.hpregenperlevel} per level</li>
+              <li> <img src="/img/StatModsArmorIcon.webp" alt="" />{championData.stats.armor} + {championData.stats.armorperlevel} per level</li>
             </ul>
             <ul>
               
               
-              <li><img src="/img/statmodsattackdamageicon.png" alt="" /> {championData.stats.attackdamage} + {championData.stats.attackdamageperlevel} per level</li>
+              <li><img src="/img/statmodsattackdamageicon.webp" alt="" /> {championData.stats.attackdamage} + {championData.stats.attackdamageperlevel} per level</li>
               
-              <li><img src="/img/StatModsAttackSpeedIcon.png" alt="" /> {championData.stats.attackspeed} + {championData.stats.attackspeedperlevel } per level</li>
+              <li><img src="/img/StatModsAttackSpeedIcon.webp" alt="" /> {championData.stats.attackspeed} + {championData.stats.attackspeedperlevel } per level</li>
               
-              <li> <img src="/img/range-icon.png"  style={{ padding: '9px' }} alt="" />  {championData.stats.attackrange}</li>
-              <li> <img src="/img/StatModsMovementSpeedIcon.png" alt="" />  {championData.stats.movespeed}</li>
+              <li> <img src="/img/range-icon.webp"  style={{ padding: '9px' }} alt="" />  {championData.stats.attackrange}</li>
+              <li> <img src="/img/StatModsMovementSpeedIcon.webp" alt="" />  {championData.stats.movespeed}</li>
             </ul>
           </div>
         </div>

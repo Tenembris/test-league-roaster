@@ -1,11 +1,11 @@
-// ChampionList.jsx
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 const ChampionList = ({ champions, patchVersion }) => {
   const [selectedTag, setSelectedTag] = useState(null);
   const [searchText, setSearchText] = useState('');
-  const navigate = useNavigate(); // Użyj useNavigate zamiast useHistory
+  const [loadedImages, setLoadedImages] = useState([]); // Przechowuje załadowane obrazy
+  const navigate = useNavigate();
 
   const handleTagSelect = (tag) => {
     setSelectedTag(tag);
@@ -22,8 +22,12 @@ const ChampionList = ({ champions, patchVersion }) => {
   });
 
   const handleChampionClick = (championName) => {
-    // Przekazanie patchVersion jako props przy nawigacji
     navigate(`/champion/${championName}`, { state: { patchVersion } });
+  };
+
+  const handleImageLoad = (index) => {
+    // Dodaj indeks załadowanego obrazka do stanu
+    setLoadedImages(prevState => [...prevState, index]);
   };
 
   return (
@@ -38,14 +42,16 @@ const ChampionList = ({ champions, patchVersion }) => {
         <input type="text" placeholder="Search..." value={searchText} onChange={handleSearchTextChange} />
       </div>
       <div className='champion-grid'>
-        {filteredChampions.map(champion => (
-          <div key={champion.name} className="champion-item-wrapper" style={{ backgroundImage: `url(${champion.image})` }} onClick={() => handleChampionClick(champion.name)}>
+        {filteredChampions.map((champion, index) => (
+          <div key={champion.name} className={`champion-item-wrapper ${loadedImages.includes(index) ? 'loaded' : ''}`} style={{ backgroundImage: `url(${champion.image})` }} onClick={() => handleChampionClick(champion.name)}>
             <div className='champion-info-min'>
               <span className='championName'>{champion.name}</span>
               {champion.tags.length > 0 && (
                 <span className='championTag'>{champion.tags[0]} {champion.tags[1]}</span>
               )}
             </div>
+            
+            <img src={champion.image} alt={champion.name} onLoad={() => handleImageLoad(index)} style={{ display: 'none' }} />
           </div>
         ))}
       </div>
