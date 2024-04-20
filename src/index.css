@@ -379,6 +379,11 @@ video {
 
     @media only screen and (max-width: 767px) {
 
+
+      .additional-ability-videos {
+        width: 400px;
+        height: 265px;
+      }
       .padding{
         padding-left: 1em;
         padding-right: 1em;
@@ -429,6 +434,12 @@ video {
       }
       .selected-spell-info {
         width: 100%;
+        font-size: 1em;
+        height: 25em;
+        
+      }
+      .selected-spell-info h2 {
+        font-size: 2em;
       }
 
       .stats-box {
@@ -495,7 +506,7 @@ video {
   width: 100%;
   position: relative;
   font-size: 50px;
-  background: url('/img/summoners-rift.jpg');
+  /* background: url('/img/summoners-rift.jpg'); */
   background-size: cover;
 }
 
@@ -520,4 +531,231 @@ video {
   overflow: hidden;
   background-size: cover;
   color: black;
+  position: relative;
+}
+
+.option-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  transition: filter 0.5s ease; /* Dodane - efekt przejścia na filtr */
+}
+
+.option-card h4 {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  opacity: 0; /* Dodane - początkowa wartość przezroczystości */
+  transition: opacity 0.5s ease; 
+  color: #ffffffee;
+}
+
+.option-card:hover img {
+  filter: brightness(0.2); /* Dodane - przyciemnienie obrazka po najechaniu */
+}
+
+.option-card:hover h4 {
+  opacity: 1; 
+  color: #ffffffee;
+}
+
+.video-fade-in {
+  animation: fadeIn 0.25s ease-out forwards;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.Role-container {
+  height: 95vh;
+}
+
+.Role-title-div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 0;
+  padding: 0;
+  margin: 0;
+  position: absolute;
+  transform: translate(50%, -80%);
+  z-index: 1000000;
+}
+
+.Role-title-div h1 {
+  margin: 0;
+}
+
+.Role-title-div h3 {
+  z-index: 1000000;
+}
+
+.role-selection {
+  background-color: black;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  position: relative;
+  
+}
+
+.role {
+  width: calc(100% / 6);
+  text-align: center;
+  position: relative;
+  transition: width 0.5s ease;
+}
+
+.role img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  transition: filter 0.5s ease, opacity 0.5s ease;
+  opacity: 0.6;
+  filter: grayscale(80%);
+  cursor: pointer;
+}
+
+.role h3,
+.role h4 {
+  position: absolute;
+  bottom: 4.5%;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 1em;
+  color: #ffffffee;
+  transition: opacity 0.5s ease; /* Dodaj transition do opacity */
+}
+
+.role h4 {
+  font-size: 0.4em;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  bottom: 2%;
+  opacity: 0;
+  color: #;
+}
+
+.role:hover {
+  width: 400px;
+}
+
+.role:hover img,
+.role:hover h3,
+.role:hover h4 {
+  filter: grayscale(0%);
+  opacity: 1; /* Zmiana opacity na 1 przy :hover */
+}
+
+.selected-role {
+  filter: brightness(0.2);
+}
+
+.additional-role-info {
+  display: flex;
+ 
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  z-index: 1000;
+  position: absolute;
+  
+}
+
+.additional-role-info img {
+  width: 60%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: flex;
+  justify-content: right;
+  z-index: 1000;
+  
+}
+
+.wrapper-role-info {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+}
+
+.wrapper-role-info div {
+  width: 40%;
+  /* From https://css.glass */
+background: rgba(0, 0, 0, 0.32);
+
+box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+backdrop-filter: blur(8.5px);
+-webkit-backdrop-filter: blur(8.5px);
+display: flex;
+justify-content: center;
+align-items: center;
+flex-direction: column;
+}
+
+.additional-role-info button{
+  position: absolute;
+  right: 20%;
+  transform: translateX(-50%);
+}
+
+.clicked {
+  width: 600% !important;
+  filter: blur(10px);
+}
+
+.role.clicked img {
+  width: 600%;
+  filter: blur(10px);
+}
+
+.mage-splash {
+  object-position: 80% 60% !important;
+  
+}
+
+.fighter-splash {
+  object-position: 65% 50% !important;
+  
+}
+
+.assasin-splash {
+  object-position: 65% 60% !important;
+  
+}
+
+.marksmen-splash {
+  object-position: 70% 60% !important;
+}
+
+.support-splash {
+  object-position: 65% 60% !important;
+}
+
+.icon-role {
+  position: absolute;
+  bottom: 10%;
+  left: 50%;
+
+  transform: translateX(-50%) !important;
+  opacity: 0.7 ;
+  filter: grayscale(0%) !important;
+}
+
+.role-icon-size {
+    width: 150px !important;
+  height: 150px !important;
 }

@@ -13,6 +13,7 @@ const Champion = () => {
   const [selectedSpell, setSelectedSpell] = useState(null);
   const [selectedSpellIndex, setSelectedSpellIndex] = useState(0);
   const [abilityVideoLink, setAbilityVideoLink] = useState('');
+  const [videoFade, setVideoFade] = useState(false);
 
   useEffect(() => {
     const fetchChampionData = async () => {
@@ -76,7 +77,11 @@ const Champion = () => {
   const handleSpellClick = (spell, index) => {
     setSelectedSpell(spell);
     setSelectedSpellIndex(index);
-    setAbilityVideoLink(generateAbilityVideoLink(championData.key, index));
+    setVideoFade(true); // Ustawiamy stan na true, aby uruchomić animację
+    setTimeout(() => {
+      setAbilityVideoLink(generateAbilityVideoLink(championData.key, index));
+      setVideoFade(false); // Po zakończeniu animacji ustawiamy stan na false
+    }, 300); // Czas trwania animacji w milisekundach (0.3s)
   };
 
   const handleImageClick = () => {
@@ -108,17 +113,17 @@ const Champion = () => {
 
       <div className='padding'>
         <div className='champion-information'>
-<div className='stats-box'>
-  <h4>
-    <span className='golden-span'>
-    Role
-    </span>
-  </h4>
-<h3>
-  {championData.tags[0]}
-  {championData.tags[1] && ` • ${championData.tags[1]}`}
-</h3>
-</div>
+          <div className='stats-box'>
+            <h4>
+              <span className='golden-span'>
+              Role
+              </span>
+            </h4>
+          <h3>
+            {championData.tags[0]}
+            {championData.tags[1] && ` • ${championData.tags[1]}`}
+          </h3>
+          </div>
           <div className='stats-spec-info'>
             <ul>
               <li> <img src="/img/statmodshealthscalingicon.webp" alt=""  fetchPriority='high'/>  {championData.stats.hp} + {championData.stats.hpperlevel} per level</li>
@@ -164,7 +169,7 @@ const Champion = () => {
 </div>
 
 
-<div className="additional-ability-videos">
+<div className={`additional-ability-videos ${videoFade ? 'video-fade-in' : ''}`}>
   {abilityVideoLink === null ? (
     <div className="passive-video-placeholder">
       <img src="../src/img/placeholder.jpeg" alt="Passive Ability Placeholder" />
@@ -179,9 +184,6 @@ const Champion = () => {
 </div>
 
 
-
-
-
 </div>
 
         <div className='champion-skills'>
@@ -192,6 +194,8 @@ const Champion = () => {
                 <img
                   src={`https://ddragon.leagueoflegends.com/cdn/14.7.1/img/spell/${spell.image.full}`}
                   alt={spell.name}
+
+                  
                 />
                 <div className='spell-details'>
                   
