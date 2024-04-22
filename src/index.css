@@ -54,7 +54,7 @@ body {
     position: relative;
     
     width: auto; /* dostosuj szerokość i wysokość do preferencji */
-    height: 240px;
+    height: 440px;
     background-size: cover; /* dopasowanie obrazka do rozmiaru kontenera */
     background-position: center center; /* wyśrodkowanie obrazka */
     overflow: hidden;
