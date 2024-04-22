@@ -143,7 +143,7 @@ const AdditionalRoleInfo = ({ role, onClose }) => {
           </>
         )}
         {/* Przycisk do zamknięcia */}
-        <button onClick={onClose}>✕</button>
+        <button className='close-button-rotate' onClick={onClose}>✕</button>
       </div>
     </CSSTransition>
   );
