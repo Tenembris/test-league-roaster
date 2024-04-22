@@ -24,11 +24,14 @@ const MainPage = () => {
       </div>
       <div className='option-section'>
         <div className='black-gradient-top' />
+        <div className='Be-part-of-team-container'>
+          <img src="/img/Teamwork.webp" alt="" />
+          <h2>Be part of Team</h2>
+          <div className="short-line"></div>
+          <p>Join millions of players worldwide in League of Legends, the ultimate 5v5 multiplayer battle arena. With over a hundred champions to choose from, each with unique abilities, the strategy is endless. Best of all, it's free to play! Defend your nexus and discover new tactics every game. Choose your role, master it, and dominate the rift.</p>
+        </div>
         <div className='Role-container'>
-          <div className='Role-title-div'>
-            <h1>Choose Your Role</h1>
-            <h3>Be part of Team</h3>
-          </div>
+
           <div className='role-selection'>
             <div className='role' onClick={() => handleRoleClick('tank')}>
               <img src="/img/galio.jpg" alt="" />

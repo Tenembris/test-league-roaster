@@ -136,16 +136,17 @@ backdrop-filter: blur(4px);
 
 
 nav {
-  position: fixed;
+  position: absolute;
   z-index: 300000;
   top: 0;
   width: 100%;
+  font-size: 2rem;
   /* From https://css.glass */
-background: rgba(0, 0, 0, 0.29);
+/* background: rgba(0, 0, 0, 0.29);
 
 box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
 backdrop-filter: blur(6.9px);
--webkit-backdrop-filter: blur(6.9px);
+-webkit-backdrop-filter: blur(6.9px); */
 
 }
 
@@ -449,7 +450,7 @@ video {
     }
 
 .hero-section{
-  height: 75vh;
+  height: 90vh;
   width: 100%;
   position: relative;
   font-size: 50px;
@@ -867,3 +868,40 @@ flex-direction: column;
   color: rgba(0, 0, 0, 0.); /* Tutaj również wartość alfa jest ustawiona na 0.5 */
 }
 
+.Be-part-of-team-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 75vh;
+  width: 100%;
+  position: relative;
+  font-size: 50px;
+  background: 
+    linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.6)),
+    url('/img/team-art.jpeg');
+  background-size: cover;
+  flex-direction: column;
+}
+
+.Be-part-of-team-container h2 {
+  color: white;
+  font-size: 3em;
+  margin: 0 0 0 0;
+}
+
+
+
+.Be-part-of-team-container p {
+  color: white;
+  font-size: 0.5em;
+  margin: 0;
+  width: 50%;
+  text-align: center;
+}
+
+.short-line {
+  width: 100px;
+  height: 4px;
+  background-color: #FF6046;
+  margin: 20px auto; /* Ustaw margines, aby była środkowo */
+}
