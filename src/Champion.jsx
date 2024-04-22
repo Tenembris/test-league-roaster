@@ -2,18 +2,16 @@ import React, { useState, useEffect } from 'react';
 import { useParams, useLocation } from 'react-router-dom';
 import axios from 'axios';
 
-
 const Champion = () => {
   const { name } = useParams();
   const location = useLocation();
-  const patchVersion = '14.7.1';
+  const patchVersion = location.state && location.state.patchVersion;
 
   const [championData, setChampionData] = useState(null);
   const [imageName, setImageName] = useState('');
   const [selectedSpell, setSelectedSpell] = useState(null);
   const [selectedSpellIndex, setSelectedSpellIndex] = useState(0);
   const [abilityVideoLink, setAbilityVideoLink] = useState('');
-  const [videoFade, setVideoFade] = useState(false);
 
   useEffect(() => {
     const fetchChampionData = async () => {
@@ -35,7 +33,7 @@ const Champion = () => {
 
         imageName = exceptions[imageName] || imageName;
         setImageName(imageName);
-        const response = await axios.get(`https://ddragon.leagueoflegends.com/cdn/14.7.1/data/en_US/champion/${imageName}.json`);
+        const response = await axios.get(`https://ddragon.leagueoflegends.com/cdn/${patchVersion}/data/en_US/champion/${imageName}.json`);
 
         setChampionData(response.data.data[imageName]);
         setSelectedSpell(response.data.data[imageName].spells[0]);
@@ -77,11 +75,7 @@ const Champion = () => {
   const handleSpellClick = (spell, index) => {
     setSelectedSpell(spell);
     setSelectedSpellIndex(index);
-    setVideoFade(true); // Ustawiamy stan na true, aby uruchomić animację
-    setTimeout(() => {
-      setAbilityVideoLink(generateAbilityVideoLink(championData.key, index));
-      setVideoFade(false); // Po zakończeniu animacji ustawiamy stan na false
-    }, 300); // Czas trwania animacji w milisekundach (0.3s)
+    setAbilityVideoLink(generateAbilityVideoLink(championData.key, index));
   };
 
   const handleImageClick = () => {
@@ -113,35 +107,35 @@ const Champion = () => {
 
       <div className='padding'>
         <div className='champion-information'>
-          <div className='stats-box'>
-            <h4>
-              <span className='golden-span'>
-              Role
-              </span>
-            </h4>
-          <h3>
-            {championData.tags[0]}
-            {championData.tags[1] && ` • ${championData.tags[1]}`}
-          </h3>
-          </div>
+<div className='stats-box'>
+  <h4>
+    <span className='golden-span'>
+    Role
+    </span>
+  </h4>
+<h3>
+  {championData.tags[0]}
+  {championData.tags[1] && ` • ${championData.tags[1]}`}
+</h3>
+</div>
           <div className='stats-spec-info'>
             <ul>
-              <li> <img src="/img/statmodshealthscalingicon.webp" alt=""  fetchPriority='high'/>  {championData.stats.hp} + {championData.stats.hpperlevel} per level</li>
+              <li> <img src="../src/statmodshealthscalingicon.png" alt="" />  {championData.stats.hp} + {championData.stats.hpperlevel} per level</li>
               
-              <li> <img src="/img/statmodsmagicresicon.webp" alt="" fetchPriority='high'/> {championData.stats.spellblock} + {championData.stats.spellblockperlevel} per level</li>
+              <li> <img src="../src/statmodsmagicresicon.png" alt="" /> {championData.stats.spellblock} + {championData.stats.spellblockperlevel} per level</li>
               
-              <li><img src="/img/StatModsHealthPlusIcon.webp" alt="" /> {championData.stats.hpregen} + {championData.stats.hpregenperlevel} per level</li>
-              <li> <img src="/img/StatModsArmorIcon.webp" alt="" />{championData.stats.armor} + {championData.stats.armorperlevel} per level</li>
+              <li><img src="../src/StatModsHealthPlusIcon.png" alt="" /> {championData.stats.hpregen} + {championData.stats.hpregenperlevel} per level</li>
+              <li> <img src="../src/StatModsArmoricon.png" alt="" />{championData.stats.armor} + {championData.stats.armorperlevel} per level</li>
             </ul>
             <ul>
               
               
-              <li><img src="/img/statmodsattackdamageicon.webp" alt="" /> {championData.stats.attackdamage} + {championData.stats.attackdamageperlevel} per level</li>
+              <li><img src="../src/statmodsattackdamageicon.png" alt="" /> {championData.stats.attackdamage} + {championData.stats.attackdamageperlevel} per level</li>
               
-              <li><img src="/img/StatModsAttackSpeedIcon.webp" alt="" /> {championData.stats.attackspeed} + {championData.stats.attackspeedperlevel } per level</li>
+              <li><img src="../src/StatModsAttackSpeedIcon.png" alt="" /> {championData.stats.attackspeed} + {championData.stats.attackspeedperlevel } per level</li>
               
-              <li> <img src="/img/range-icon.webp"  style={{ padding: '9px' }} alt="" />  {championData.stats.attackrange}</li>
-              <li> <img src="/img/StatModsMovementSpeedIcon.webp" alt="" />  {championData.stats.movespeed}</li>
+              <li> <img src="../src/range-icon.png"  style={{ padding: '9px' }} alt="" />  {championData.stats.attackrange}</li>
+              <li> <img src="../src/StatModsMovementSpeedIcon.png" alt="" />  {championData.stats.movespeed}</li>
             </ul>
           </div>
         </div>
@@ -169,10 +163,10 @@ const Champion = () => {
 </div>
 
 
-<div className={`additional-ability-videos ${videoFade ? 'video-fade-in' : ''}`}>
+<div className="additional-ability-videos">
   {abilityVideoLink === null ? (
     <div className="passive-video-placeholder">
-      <img src="../src/img/placeholder.jpeg" alt="Passive Ability Placeholder" />
+      <img src="../src/placeholder.jpeg" alt="Passive Ability Placeholder" />
       <h3>There is no video for this ability</h3>
     </div>
   ) : (
@@ -184,6 +178,9 @@ const Champion = () => {
 </div>
 
 
+
+
+
 </div>
 
         <div className='champion-skills'>
@@ -192,10 +189,8 @@ const Champion = () => {
             {championData.spells.map((spell, index) => (
               <div key={index} className='spell' onClick={() => handleSpellClick(spell, index)}>
                 <img
-                  src={`https://ddragon.leagueoflegends.com/cdn/14.7.1/img/spell/${spell.image.full}`}
+                  src={`https://ddragon.leagueoflegends.com/cdn/${patchVersion}/img/spell/${spell.image.full}`}
                   alt={spell.name}
-
-                  
                 />
                 <div className='spell-details'>
                   
@@ -204,7 +199,7 @@ const Champion = () => {
             ))}
             <div className='spell' onClick={() => handleSpellClick(championData.passive, 4)}>
               <img
-                src={`https://ddragon.leagueoflegends.com/cdn/14.7.1/img/passive/${championData.passive.image.full}`}
+                src={`https://ddragon.leagueoflegends.com/cdn/${patchVersion}/img/passive/${championData.passive.image.full}`}
                 alt={championData.passive.name}
               />
               <div className='spell-details'>
