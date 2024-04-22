@@ -127,6 +127,7 @@ const AdditionalRoleInfo = ({ role, onClose }) => {
                 <img className='role-icon-size' src="/img/assasin-icon.png" alt="" />
                 <h1>Assassin</h1>
                 <h5>Stealthy Killer</h5>
+                <div className='short-line'></div>
                 <p>Assassins specialize in swiftly eliminating high-priority targets with precision and finesse. They excel at finding and exploiting weaknesses in enemy lines, making them deadly threats to unsuspecting foes.</p>
                 <h6>Traits</h6>
                 <ul className='ul-role-info'>
