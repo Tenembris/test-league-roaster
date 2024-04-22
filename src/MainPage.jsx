@@ -1,9 +1,12 @@
-import React, { useState } from 'react';
-import AdditionalRoleInfo from './AdditionalRoleInfo'; // Importuj komponent
+import React, { useState, useEffect } from 'react';
+import AdditionalRoleInfo from './AdditionalRoleInfo';
+import axios from 'axios';
 
 const MainPage = () => {
   const [selectedRole, setSelectedRole] = useState(null);
-  const [clickedImage, setClickedImage] = useState(null); // Dodaj stan dla klikniętego obrazka
+  const [clickedImage, setClickedImage] = useState(null); 
+  const [currentPatch, setCurrentPatch] = useState(null);
+
 
   const handleRoleClick = (role) => {
     setSelectedRole(role);
@@ -15,13 +18,43 @@ const MainPage = () => {
     setClickedImage(null); // Resetuje stan klikniętego obrazka
   };
 
+  useEffect(() => {
+    // Pobierz numer patcha z zewnętrznego API
+    axios.get('https://ddragon.leagueoflegends.com/api/versions.json')
+      .then(response => {
+        const currentPatchVersion = response.data[0];
+        setCurrentPatch(currentPatchVersion);
+      })
+      .catch(error => {
+        console.error('Wystąpił błąd podczas pobierania numeru patcha:', error);
+      });
+  }, []);
+
   return (
     <>
       <div className='hero-section'>
         <video className='video-hero' src="/img/hd-roaster-converted.webm" autoPlay muted loop preload='auto' />
         <h1>Welcome to League Roaster</h1>
+
         <div className='black-gradient' />
+        <div className='news-info-section'>
+          <div>
+          <h4>Patch</h4>
+          <h3>{currentPatch}</h3>
+          
+          </div>
+
       </div>
+      </div>
+      <div>
+      <div className='info-news-website'>
+          <h4>Informations</h4> 
+          <p>
+          <span className='gold-span'>League Roaster</span> was created for both <span className='green-span'>newcomers</span> and <span className='red-span'>veterans</span> of League of Legends. For newcomers, the platform offers comprehensive champion information, including skills accompanied by videos, lore, and upcoming skin releases. As for veterans, the website provides basic statistics, with plans to expand to include detailed champion stats, items, and tables with more in-depth data. Whether you're just starting your journey or seeking advanced insights, League Roaster aims to be your ultimate resource for all things League of Legends.
+          </p>
+          </div>
+      </div>
+     
       <div className='option-section'>
         <div className='black-gradient-top' />
         <div className='Be-part-of-team-container'>
