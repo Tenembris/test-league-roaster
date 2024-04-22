@@ -5,6 +5,7 @@ import ChampionList from './ChampionList';
 import Champion from './Champion';
 import Champions from './Champions';
 import NavBar from './Navbar'
+import Footer from './Footer';
 
 function App() {
   return (
@@ -15,6 +16,8 @@ function App() {
         <Route path="/champions" element={<Champions />} />
         <Route path="/champion/:name" element={<Champion />} />
       </Routes>
+
+      <Footer /> {/* Include the footer here */}
     </Router>
   );
 }
