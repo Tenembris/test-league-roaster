@@ -34,13 +34,20 @@ const ChampionSkinComponent = ({ championName, patchVersion, skinNums }) => {
         selectedItem={currentSlide}
         onChange={(index) => setCurrentSlide(index)}
         infiniteLoop={true}
-        transitionEffect="fade" // Ustawienie efektu "fade"
+        
+        interval={5000}
+        autoPlay={true}
+        stopOnHover={true}
+        thumbWidth={250}
+        animationHandler="fade"
+        showIndicators={false}
       >
         {skinNums.map((skinNum, index) => (
           <div key={index}>
             <img
               src={`https://ddragon.leagueoflegends.com/cdn/img/champion/splash/${championName}_${skinNum}.jpg`}
               alt={`Skin ${index + 1}`}
+              className='Hero-skin'
             />
             <p>{skinsData.length > 0 && skinsData[index].name}</p>
           </div>

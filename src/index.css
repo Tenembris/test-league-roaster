@@ -1054,3 +1054,23 @@ footer {
 .fade-carousel > div.inactive {
   z-index: 0;
 }
+
+.Skin-Container img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+.Skin-Container {
+  padding: 50px;
+}
+
+.carousel .thumb {
+  border: none;
+  filter: brightness(0.5);
+}
+
+.carousel .thumb.selected, .carousel .thumb:hover{
+  border: 2px solid #D0A85C;
+  filter: brightness(1);
+}
