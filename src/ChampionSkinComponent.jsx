@@ -29,32 +29,33 @@ const ChampionSkinComponent = ({ championName, patchVersion, skinNums }) => {
 
   return (
     <div className='Skin-Container'>
+      <h1 className=''>AVAILABLE SKINS</h1>
       <Carousel
         showArrows={true}
         selectedItem={currentSlide}
         onChange={(index) => setCurrentSlide(index)}
         infiniteLoop={true}
         
-        interval={5000}
+        interval={8000}
         autoPlay={true}
         stopOnHover={true}
-        thumbWidth={250}
+        thumbWidth={220}
         animationHandler="fade"
         showIndicators={false}
       >
+        
         {skinNums.map((skinNum, index) => (
-          <div key={index}>
+          <div key={index} className='skin-img-container'>
             <img
               src={`https://ddragon.leagueoflegends.com/cdn/img/champion/splash/${championName}_${skinNum}.jpg`}
               alt={`Skin ${index + 1}`}
               className='Hero-skin'
             />
-            <p>{skinsData.length > 0 && skinsData[index].name}</p>
+            <h3 className='skin-name'>{skinsData.length > 0 && skinsData[index].name}</h3>
           </div>
         ))}
       </Carousel>
-      <h1>{championName}</h1>
-      <h2>{patchVersion}</h2>
+
     </div>
   );
 };
