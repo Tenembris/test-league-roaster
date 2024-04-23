@@ -25,7 +25,7 @@ const Champions = () => {
 
               // Sprawdź, czy obrazek jest już w cache
               const cachedImage = imageCache[imageName];
-              const imageUrl = cachedImage ? cachedImage : `https://ddragon.leagueoflegends.com/cdn/img/champion/centered/${imageName}_0.jpg`;
+              const imageUrl = cachedImage ? cachedImage : `https://ddragon.leagueoflegends.com/cdn/img/champion/loading/${imageName}_0.jpg`;
 
               // Zapisz obrazek do cache
               if (!cachedImage) {

@@ -51,7 +51,7 @@ const ChampionList = ({ champions, patchVersion }) => {
               )}
             </div>
             
-            <img src={champion.image} alt={champion.name} onLoad={() => handleImageLoad(index)} style={{ display: 'none' }} />
+            {/* <img src={champion.image} alt={champion.name} onLoad={() => handleImageLoad(index)} style={{ display: 'none' }} /> */}
           </div>
         ))}
       </div>
