@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
+import { Carousel } from 'react-responsive-carousel';
+import 'react-responsive-carousel/lib/styles/carousel.min.css';
 import axios from 'axios';
-import './ChampionSkinComponent.css';
 
 const ChampionSkinComponent = ({ championName, patchVersion, skinNums }) => {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -28,9 +29,15 @@ const ChampionSkinComponent = ({ championName, patchVersion, skinNums }) => {
 
   return (
     <div className='Skin-Container'>
-      <div className="fade-carousel">
+      <Carousel
+        showArrows={true}
+        selectedItem={currentSlide}
+        onChange={(index) => setCurrentSlide(index)}
+        infiniteLoop={true}
+        transitionEffect="fade" // Ustawienie efektu "fade"
+      >
         {skinNums.map((skinNum, index) => (
-          <div key={index} className={currentSlide === index ? 'active' : 'inactive'}>
+          <div key={index}>
             <img
               src={`https://ddragon.leagueoflegends.com/cdn/img/champion/splash/${championName}_${skinNum}.jpg`}
               alt={`Skin ${index + 1}`}
@@ -38,7 +45,7 @@ const ChampionSkinComponent = ({ championName, patchVersion, skinNums }) => {
             <p>{skinsData.length > 0 && skinsData[index].name}</p>
           </div>
         ))}
-      </div>
+      </Carousel>
       <h1>{championName}</h1>
       <h2>{patchVersion}</h2>
     </div>
