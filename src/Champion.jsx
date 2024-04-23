@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useLocation } from 'react-router-dom';
 import axios from 'axios';
+import ChampionSkinComponent from './ChampionSkinComponent';
 
 const Champion = () => {
   const { name } = useParams();
@@ -12,6 +13,7 @@ const Champion = () => {
   const [selectedSpell, setSelectedSpell] = useState(null);
   const [selectedSpellIndex, setSelectedSpellIndex] = useState(0);
   const [abilityVideoLink, setAbilityVideoLink] = useState('');
+  const [skinNums, setSkinNums] = useState([]);
 
   useEffect(() => {
     const fetchChampionData = async () => {
@@ -38,6 +40,10 @@ const Champion = () => {
         setChampionData(response.data.data[imageName]);
         setSelectedSpell(response.data.data[imageName].spells[0]);
         setAbilityVideoLink(generateAbilityVideoLink(response.data.data[imageName].key, 0));
+        const skins = response.data.data[imageName].skins;
+        const numArray = skins.map(skin => skin.num);
+        setSkinNums(numArray);
+
       } catch (error) {
         console.error('Błąd podczas pobierania danych bohatera:', error);
       }
@@ -224,7 +230,7 @@ const Champion = () => {
           </ul>
         </div>
 
-
+        <ChampionSkinComponent championName={championData.id} patchVersion={patchVersion} skinNums={skinNums} />
       </div>
     </div>
   );
