@@ -1232,4 +1232,6 @@ backdrop-filter: blur(6.1px);
     padding-bottom: 3em;
 
   }
+}.spell.active {
+  transform: scale(1.2); /* Kolor ramki */
 }
