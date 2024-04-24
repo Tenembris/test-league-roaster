@@ -203,6 +203,9 @@ const Champion = () => {
                 </div>
               </div>
             ))}
+            <div className='short-line-vertical'>
+
+            </div>
             <div className='spell' onClick={() => handleSpellClick(championData.passive, 4)}>
               <img
                 src={`https://ddragon.leagueoflegends.com/cdn/${patchVersion}/img/passive/${championData.passive.image.full}`}
