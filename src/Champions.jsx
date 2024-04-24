@@ -65,8 +65,13 @@ const Champions = () => {
   return (
     <>
       <div className='component-parent-container'>
-        <h1>Main Page</h1>
+        <div className='Component-title-container'>
+        <h1>CHAMPIONS</h1>
+        <p>Explore over 140 diverse champions, each with their own distinct playstyle and abilities in League of Legends. Whether you favor cunning mages, mighty warriors, or agile assassins, unleash their powers and strive for victory on the battlefield.</p>
         <h2>{currentPatch}</h2>
+        </div>
+
+        
 
         <ChampionList champions={filteredChampions} patchVersion={currentPatch} />
         <div></div>
