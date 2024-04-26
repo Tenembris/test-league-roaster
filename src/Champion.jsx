@@ -14,6 +14,8 @@ const Champion = () => {
   const [selectedSpellIndex, setSelectedSpellIndex] = useState(0);
   const [abilityVideoLink, setAbilityVideoLink] = useState('');
   const [skinNums, setSkinNums] = useState([]);
+  
+
 
   useEffect(() => {
     const fetchChampionData = async () => {
@@ -191,31 +193,33 @@ const Champion = () => {
 
         <div className='champion-skills'>
         
-          <div className='skills-container'>
-            {championData.spells.map((spell, index) => (
-              <div key={index} className='spell' onClick={() => handleSpellClick(spell, index)}>
-                <img
-                  src={`https://ddragon.leagueoflegends.com/cdn/${patchVersion}/img/spell/${spell.image.full}`}
-                  alt={spell.name}
-                />
-                <div className='spell-details'>
-                  
-                </div>
-              </div>
-            ))}
-            <div className='short-line-vertical'>
+        <div className='skills-container'>
+  {championData.spells.map((spell, index) => (
+    <div
+      key={index}
+      className={`spell ${selectedSpellIndex === index ? 'active' : ''}`}
+      onClick={() => handleSpellClick(spell, index)}
+    >
+      <img
+        src={`https://ddragon.leagueoflegends.com/cdn/${patchVersion}/img/spell/${spell.image.full}`}
+        alt={spell.name}
+      />
+      <div className='spell-details'></div>
+    </div>
+  ))}
+  <div className='short-line-vertical'></div>
+  <div
+    className={`spell ${selectedSpellIndex === 4 ? 'active' : ''}`}
+    onClick={() => handleSpellClick(championData.passive, 4)}
+  >
+    <img
+      src={`https://ddragon.leagueoflegends.com/cdn/${patchVersion}/img/passive/${championData.passive.image.full}`}
+      alt={championData.passive.name}
+    />
+    <div className='spell-details'></div>
+  </div>
+</div>
 
-            </div>
-            <div className='spell' onClick={() => handleSpellClick(championData.passive, 4)}>
-              <img
-                src={`https://ddragon.leagueoflegends.com/cdn/${patchVersion}/img/passive/${championData.passive.image.full}`}
-                alt={championData.passive.name}
-              />
-              <div className='spell-details'>
-                
-              </div>
-            </div>
-          </div>
         </div>
 
         <div className='champion-tips'>

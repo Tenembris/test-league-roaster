@@ -426,7 +426,7 @@ video {
       }
     }
 
-    @media only screen and (max-width: 767px) {
+    @media  (max-width: 900px) {
 
 
       .additional-ability-videos {
@@ -455,15 +455,15 @@ video {
       }
 
       .Champion-section-Hero h1 {
-        font-size: 6em;
-        top: 90%;
+        font-size: 3em;
+        top: 120%;
       }
 
       .Champion-section-Hero h2 {
         width: 100%;
-        font-size: 1.5em;
+        font-size: 1em;
         text-align: center;
-        top: 90%;
+        top: 110%;
       }
 
       .Champion-section-Hero {
@@ -495,6 +495,12 @@ video {
         margin-left: 0;
        
       }
+
+      .Skin-Container {
+        padding: 0 !important;
+      }
+
+   
     }
 
 .hero-section{
@@ -1048,7 +1054,7 @@ flex-direction: column;
   }
   p {
     font-size: 1rem !important;
-    width: 70% !important;
+    width: 90% !important;
   
   }
 
@@ -1056,6 +1062,16 @@ flex-direction: column;
     height: 35vh;
 }
 
+.role-card-info {
+  width: 100%;
+}
+
+.role-card-info p {
+  font-size: 0.6rem !important;
+  margin: 0;
+  width: 600px;
+  height: auto;
+}
 
 
 .role-icon-size {
@@ -1063,6 +1079,31 @@ flex-direction: column;
   height: auto !important;
   display: none;
 }
+
+.role-card-info h1 {
+  font-size: 1.5rem;
+
+
+}
+
+.role-card-info h6 {
+  font-size: 0.6rem;
+
+
+}
+
+.ul-role-info {
+  padding: 0;
+  margin: 0;
+}
+
+ul li {
+  font-size: 0.6rem;
+
+}
+
+
+
 
 .role h3 {
   font-size: 0.6rem;
@@ -1075,6 +1116,12 @@ footer {
 
 .champion-grid {
   padding: 5px;
+}
+
+.additional-role-info button {
+  font-size: 0.6em;
+  top: 5%;
+  right: 5%;
 }
 
 }
@@ -1211,6 +1258,10 @@ backdrop-filter: blur(6.1px);
     font-size: 3.5em;
     margin-top: 20%;
   }
+  
+  .carousel .thumbs-wrapper {
+    position: static;
+  }
 
  
 
@@ -1232,4 +1283,7 @@ backdrop-filter: blur(6.1px);
     padding-bottom: 3em;
 
   }
+
+}.spell.active {
+  transform: scale(1.2); /* Kolor ramki */
 }
