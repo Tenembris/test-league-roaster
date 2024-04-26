@@ -42,6 +42,7 @@ const ChampionSkinComponent = ({ championName, patchVersion, skinNums }) => {
         thumbWidth={220}
         animationHandler="fade"
         showIndicators={false}
+      swipeable={false}
       >
         
         {skinNums.map((skinNum, index) => (

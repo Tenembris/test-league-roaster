@@ -6,6 +6,7 @@ import Champion from './Champion';
 import Champions from './Champions';
 import NavBar from './Navbar'
 import Footer from './Footer';
+import ItemsComponent from './ItemsComponent';
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
         <Route path="/" element={<MainPage />} />
         <Route path="/champions" element={<Champions />} />
         <Route path="/champion/:name" element={<Champion />} />
+        <Route path="/items" element={<ItemsComponent />} />
       </Routes>
 
       <Footer /> {/* Include the footer here */}
