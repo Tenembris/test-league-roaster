@@ -10,13 +10,13 @@
   .items-container img {
     cursor: pointer;
   }
-  
-  .items-wrapper {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(60px, 1fr)); /* Powtarzaj kolumny automatycznie, minimalna szerokość 150px, maksymalnie 1 frakcja szerokości dostępnej przestrzeni */
+      /* display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(60px, 1fr)); 
     gap: 20px;
     justify-content: start;
-    align-items: start;
+    align-items: start; */
+  .items-wrapper {
+
     font-size: 0.5rem;
    
     height: 75vh;
@@ -116,4 +116,10 @@ gap: 20px;
     bottom: 0;
     right: 50%;
     transform: translate(50%, 50%);
+}
+
+.item-group {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
 }
