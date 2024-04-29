@@ -1,13 +1,21 @@
 import React, { useState, useEffect } from 'react';
 import './ItemsComponent.css';
 
+import { helix } from 'ldrs';
+
+// Default values shown  
+
+
 const ItemsComponent = () => {
   const [items, setItems] = useState([]);
   const [selectedItem, setSelectedItem] = useState(null);
   const [searchText, setSearchText] = useState('');
+  const [isLoading, setIsLoading] = useState(true);
+
 
   useEffect(() => {
     const fetchData = async () => {
+      setIsLoading(true);
       try {
         const response = await fetch('https://ddragon.leagueoflegends.com/cdn/14.8.1/data/en_US/item.json');
         const data = await response.json();
@@ -40,8 +48,12 @@ const ItemsComponent = () => {
         if (processedItems.length > 0) {
           setSelectedItem(processedItems[0]);
         }
+        setTimeout(() => {
+          setIsLoading(false); // Ustawienie isLoading na false po pomyślnym pobraniu danych
+        }, 5000); // Opóźnienie w milisekundach (2 sekundy)
       } catch (error) {
         console.error('Error fetching data:', error);
+        setIsLoading(false);
       }
     };
 
@@ -73,6 +85,10 @@ const ItemsComponent = () => {
     setSearchText(event.target.value);
   };
 
+  const handleClearSearch = () => {
+    setSearchText('');
+  };
+
   // Grupowanie przedmiotów w zależności od głębokości
   const groupedItems = {
     basic: filteredItems.filter(item => item.depth === 1),
@@ -86,10 +102,20 @@ const ItemsComponent = () => {
 
   return (
     <div className="items-container">
-      <div className='items-tool-component'>
-        <div className="search-box">
-          <input type="text" placeholder="Search..." value={searchText} onChange={handleSearchTextChange} />
+      {isLoading ? (
+        <div className={`loading-overlay ${isLoading ? 'fade-out' : ''}`}>
+          <div className="spinner"></div>
         </div>
+      ) : null}
+      <div className='items-tool-component'>
+      <div className="search-box">
+        <input type="text" placeholder="Search..." value={searchText} onChange={handleSearchTextChange} />
+        {searchText && ( // Wyświetlanie ikony X tylko gdy jest tekst w polu wyszukiwania
+          <span className="clear-search" onClick={handleClearSearch}>
+            ✕
+          </span>
+        )}
+      </div>
         <div className="items-wrapper">
         {/* <h4>Basic</h4>
           <div className="basic-items item-group">
@@ -168,7 +194,7 @@ const ItemsComponent = () => {
       {selectedItem && (
         <div className='item-description'>
             <h3>Into:</h3>
-            <div className="related-items-wrapper">
+            <div className="related-items-wrapper flex-wrapper">
               {selectedItem.into.map((itemId, index) => (
                 <div key={index} className="related-item" onClick={() => handleItemClick(itemId)}>
                   <img src={items.find(item => item.id === itemId)?.imageUrl} alt={items.find(item => item.id === itemId)?.name} />
