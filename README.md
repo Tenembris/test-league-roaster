@@ -1,4 +1,4 @@
-# React + Vite
+# League Roaster
 
 Link to web app: https://league-roaster.netlify.app/
 League Roaster is a project developed for fun, utilizing the Riot API. Currently, the project includes the following features:
