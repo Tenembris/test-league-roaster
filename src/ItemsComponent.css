@@ -5,7 +5,7 @@
     padding: 5vh;
     display: flex;
     justify-content: space-around;
-    
+    background-color: ;
   }
 
   .items-container img {
@@ -23,6 +23,7 @@
     height: 70vh;
     overflow-y: scroll;
     border-right: 1px solid #8B4513;
+    overflow-x: hidden;
     
   }
 
@@ -193,3 +194,25 @@ gap: 20px;
   padding-left: 10px;
   cursor: pointer;
 }
+
+.item-filter {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
+  flex-direction: column;
+  width: 5%;
+  gap: 10px;
+}
+
+.item-filter button {
+  width: 60px;
+  background-color: transparent;
+  border: 1px solid white;
+  color: white;
+  cursor: pointer;
+  font-size: 10px;
+
+}
+
+
