@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './ItemsComponent.css';
-
+import { Tooltip } from 'react-tooltip'
 import { helix } from 'ldrs';
 
 // Default values shown  
@@ -11,8 +11,8 @@ const ItemsComponent = () => {
   const [selectedItem, setSelectedItem] = useState(null);
   const [searchText, setSearchText] = useState('');
   const [isLoading, setIsLoading] = useState(true);
-
-
+  const [selectedTag, setSelectedTag] = useState(null);
+  
   useEffect(() => {
     const fetchData = async () => {
       setIsLoading(true);
@@ -40,26 +40,46 @@ const ItemsComponent = () => {
             into: itemData[key].into || [],
             baseGold: itemData[key].gold.base,
             depth: itemData[key].depth || 0,
-            Ornn: itemData[key].requiredAlly // Dodajemy głębokość elementu, jeśli istnieje
+            Ornn: itemData[key].requiredAlly,
+            tags: itemData[key].tags,
           }));
+  
+        // Licznik obrazów, które mają być załadowane
+        let imagesToLoad = processedItems.length;
+  
+        // Funkcja, która będzie wywoływana po załadowaniu każdego obrazu
+        const imageLoaded = () => {
+          imagesToLoad--;
+          if (imagesToLoad === 0) {
+            setIsLoading(false); // Ustawienie isLoading na false po załadowaniu wszystkich obrazów
+          }
+        };
+  
+        // Ustawienie zdarzenia onload dla każdego obrazu
+        processedItems.forEach(item => {
+          const image = new Image();
+          image.onload = imageLoaded;
+          image.src = item.imageUrl;
+        });
+  
         setItems(processedItems);
-
+  
         // Ustawiamy pierwszy element jako domyślnie wybrany
         if (processedItems.length > 0) {
           setSelectedItem(processedItems[0]);
         }
-        setTimeout(() => {
-          setIsLoading(false); // Ustawienie isLoading na false po pomyślnym pobraniu danych
-        }, 5000); // Opóźnienie w milisekundach (2 sekundy)
       } catch (error) {
         console.error('Error fetching data:', error);
-        setIsLoading(false);
       }
     };
-
+  
     fetchData();
   }, []);
 
+  const handleTagSelect = (tag) => {
+    setSelectedTag(tag);
+    console.log(tag);
+  };
   
 
     const formatDescription = (description) => {
@@ -76,9 +96,11 @@ const ItemsComponent = () => {
   };
 
   // Funkcja do filtrowania elementów na podstawie tekstu wyszukiwania
-  const filteredItems = items.filter(item =>
-    item.name.toLowerCase().includes(searchText) || // Wyszukiwanie po nazwie
-    (item.colloq && item.colloq.toLowerCase().includes(searchText)) // Wyszukiwanie po polu colloq
+  const filteredItems = items.filter(item => {
+    const tagMatch = !selectedTag || item.tags?.includes(selectedTag);
+    const nameMatch = item.name.toLowerCase().includes(searchText.toLowerCase());
+    return tagMatch && nameMatch;}
+    
   );
 
   const handleSearchTextChange = (event) => {
@@ -98,10 +120,49 @@ const ItemsComponent = () => {
     other: filteredItems.filter(item => item.depth > 3),
   };
 
+  const tagDisplayMap = {
+    'All': 'All',
+    'Health': 'Health',
+    'Armor': 'Armor',
+    'Damage': 'Attack Damage',
+    'AttackSpeed': 'Attack Speed', // zmieniono na AttackSpeed bez spacji
+    'SpellBlock': 'Magic Resist', // zmieniono na Magic Resist
+    'OnHit': 'On Hit',
+    'AbilityHaste': 'Ability Haste',
+    'Slow': 'Slow',
+    'Mana': 'Mana',
+    'SpellDamage': 'Ability Power',
+    'MagicPenetration': 'Magic Penetration',
+    'CriticalStrike': 'Critical Strike',
+    'LifeSteal': 'Life Steal',
+    'SpellVamp': 'Spell Vamp',
+    'Tenacity': 'Tenacity',
+    'NonbootsMovement': 'Movement Speed',
+    'CooldownReduction': 'Cooldown Reduction',
+    
+
+
+  };
+
   
 
   return (
     <div className="items-container">
+     <div className='item-filter'>
+     {Object.keys(tagDisplayMap).map(tag => (
+        <button
+        className='item-filter-button'
+          key={tag}
+          onClick={() => handleTagSelect(tag === 'All' ? null : tag)}
+          style={{
+            borderBottom: selectedTag === tag ? '2px solid #D0A85C' : 'none',
+            opacity: selectedTag === tag ? 1 : 0.5
+          }}
+        >
+          {tagDisplayMap[tag]} {/* Zastosowanie mapowania */}
+        </button>
+      ))}
+     </div>
       {isLoading ? (
         <div className={`loading-overlay ${isLoading ? 'fade-out' : ''}`}>
           <div className="spinner"></div>
@@ -140,6 +201,7 @@ const ItemsComponent = () => {
                   <div key={index} className="item" onClick={() => handleItemClick(item.id)}>
                     <img src={item.imageUrl} alt={item.name} />
                     <span>{item.gold.total}</span>
+
                   </div>
                 ))}
               </>
