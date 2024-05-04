@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+
 
 const ChampionList = ({ champions, patchVersion }) => {
   const [selectedTag, setSelectedTag] = useState(null);
@@ -59,7 +60,7 @@ const ChampionList = ({ champions, patchVersion }) => {
           <input type="text" placeholder="Search..." value={searchText} onChange={handleSearchTextChange} />
         </div>
       </div>
-      <div className='champion-grid'>
+      <div className='champion-grid fade-in'> {/* Dodajemy klasę fade-in tutaj */}
         {filteredChampions.map((champion, index) => (
           <div key={champion.name} className={`champion-item-wrapper ${loadedImages.includes(index) ? 'loaded' : ''}`} onClick={() => handleChampionClick(champion.name)}>
             <img src={champion.image} alt={champion.name} className='champion-image' onLoad={() => handleImageLoad(index)} />
