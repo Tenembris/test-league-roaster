@@ -24,9 +24,8 @@ const ItemsComponent = () => {
           .filter(key => {
             const item = itemData[key];
             return (
-              (item.maps["11"] || item.maps["12"]) && // Przejmujemy się tylko elementami, które mają 11 lub 12, ale...
-              (item.inStore === undefined || item.inStore !== false || item.depth !== undefined && item.depth !== false) // ...i których inStore nie jest false lub undefined
-              // ...i które posiadają właściwość depth
+              (item.maps["11"] || item.maps["12"]) && 
+              (item.inStore === undefined || item.inStore !== false || (item.depth !== undefined && item.depth !== false))
             );
           })
           .map(key => ({
@@ -47,18 +46,22 @@ const ItemsComponent = () => {
         // Licznik obrazów, które mają być załadowane
         let imagesToLoad = processedItems.length;
   
-        // Funkcja, która będzie wywoływana po załadowaniu każdego obrazu
-        const imageLoaded = () => {
+        // Dodajemy do licznika inne zasoby do załadowania
+        // Tutaj możesz dodać inne zasoby, takie jak czcionki, style CSS itp.
+  
+        // Funkcja, która będzie wywoływana po załadowaniu każdego zasobu
+        const resourceLoaded = () => {
           imagesToLoad--;
+          // Możesz dodać tutaj inne rodzaje zasobów do odliczania
           if (imagesToLoad === 0) {
-            setIsLoading(false); // Ustawienie isLoading na false po załadowaniu wszystkich obrazów
+            setIsLoading(false); // Ustawienie isLoading na false po załadowaniu wszystkich zasobów
           }
         };
   
         // Ustawienie zdarzenia onload dla każdego obrazu
         processedItems.forEach(item => {
           const image = new Image();
-          image.onload = imageLoaded;
+          image.onload = resourceLoaded;
           image.src = item.imageUrl;
         });
   
@@ -75,6 +78,7 @@ const ItemsComponent = () => {
   
     fetchData();
   }, []);
+  
 
   const handleTagSelect = (tag) => {
     setSelectedTag(tag);

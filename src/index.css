@@ -38,6 +38,7 @@ body {
     padding: 2em 10em 10em 10em; 
     grid-template-columns: repeat(6, 1fr); /* 5 kolumn na bazie */
     gap: 20px; /* Odstęp między championami */
+    min-height: 100vh; /* Minimalna wysokość kontenera */
     
   
     @media (max-width: 1200px) {
@@ -1286,4 +1287,18 @@ backdrop-filter: blur(6.1px);
 
 }.spell.active {
   transform: scale(1.2); /* Kolor ramki */
+}
+
+.champion-grid.fade-in {
+  opacity: 0;
+  animation: fadeInAnimation 1s ease forwards;
+}
+
+@keyframes fadeInAnimation {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
