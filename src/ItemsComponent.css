@@ -24,6 +24,7 @@
     overflow-y: scroll;
     border-right: 1px solid #8B4513;
     overflow-x: hidden;
+    width: 60%;
     
   }
 
@@ -244,6 +245,9 @@ gap: 20px;
     display: none;
   }
 
+  .items-wrapper {
+    width: 100%;
+  }
 
 
 }
