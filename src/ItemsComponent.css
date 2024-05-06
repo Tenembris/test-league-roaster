@@ -215,4 +215,35 @@ gap: 20px;
 
 }
 
+@media (max-width: 900px) {
+  .items-container {
+    padding: 0;
+    margin: 7.5vh auto;
+  }
 
+  .item {
+    width: 40px;
+  }
+
+  .related-item img{
+    width: 30px;
+  }
+
+  .item-group {
+    gap: 5px;
+  }
+
+  .item-group img {
+    width: 30px;
+  }
+
+  .recepie-position {
+    bottom: -10%;
+  }
+  .item-filter {
+    display: none;
+  }
+
+
+
+}

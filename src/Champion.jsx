@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams, useLocation } from 'react-router-dom';
 import axios from 'axios';
 import ChampionSkinComponent from './ChampionSkinComponent';
+import { motion } from 'framer-motion'; // Importujemy motion z framer-motion
 
 const Champion = () => {
   const { name } = useParams();
@@ -14,8 +15,6 @@ const Champion = () => {
   const [selectedSpellIndex, setSelectedSpellIndex] = useState(0);
   const [abilityVideoLink, setAbilityVideoLink] = useState('');
   const [skinNums, setSkinNums] = useState([]);
-  
-
 
   useEffect(() => {
     const fetchChampionData = async () => {
@@ -76,7 +75,6 @@ const Champion = () => {
         spellName = 'P'; // P for passive
     }
 
-    console.log(`https://d28xe8vt774jo5.cloudfront.net/champion-abilities/${formattedChampionId}/ability_${formattedChampionId}_${spellName}1.webm`)
     return `https://d28xe8vt774jo5.cloudfront.net/champion-abilities/${formattedChampionId}/ability_${formattedChampionId}_${spellName}1.webm`;
   };
 
@@ -105,121 +103,121 @@ const Champion = () => {
   };
 
   return (
-    <div className='component-parent-container'>
+    <motion.div // Dodajemy motion.div
+
+    >
       <div className='component-parent-container'>
         <div className='Champion-section-Hero' style={{ backgroundImage: `url(https://ddragon.leagueoflegends.com/cdn/img/champion/splash/${splashArtName})` }}>
+          
+          <motion.div       className='component-parent-container'
+      initial={{ y: 100, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      exit={{ y: -100, opacity: 0 }}
+      transition={{ duration: 0.7 }}>
+
+         
           <h1>{championData.name}</h1>
           <h2>{championData.title}</h2>
+          </motion.div>
         </div>
       </div>
 
       <div className='padding'>
+        <motion.div       initial={{ y: 100, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      exit={{ y: -100, opacity: 0 }}
+      transition={{ duration: 0.7 }}>
         <div className='champion-information'>
-<div className='stats-box'>
-  <h4>
-    <span className='golden-span'>
-    Role
-    </span>
-  </h4>
-<h3>
-  {championData.tags[0]}
-  {championData.tags[1] && ` • ${championData.tags[1]}`}
-</h3>
-</div>
+          <div className='stats-box'>
+            <h4>
+              <span className='golden-span'>
+                Role
+              </span>
+            </h4>
+            <h3>
+              {championData.tags[0]}
+              {championData.tags[1] && ` • ${championData.tags[1]}`}
+            </h3>
+          </div>
           <div className='stats-spec-info'>
             <ul>
-              <li> <img src="/img/statmodshealthscalingicon.webp" alt="" />  {championData.stats.hp} + {championData.stats.hpperlevel} per level</li>
-              
-              <li> <img src="/img/statmodsmagicresicon.webp" alt="" /> {championData.stats.spellblock} + {championData.stats.spellblockperlevel} per level</li>
-              
+              <li><img src="/img/statmodshealthscalingicon.webp" alt="" /> {championData.stats.hp} + {championData.stats.hpperlevel} per level</li>
+              <li><img src="/img/statmodsmagicresicon.webp" alt="" /> {championData.stats.spellblock} + {championData.stats.spellblockperlevel} per level</li>
               <li><img src="/img/StatModsHealthPlusIcon.webp" alt="" /> {championData.stats.hpregen} + {championData.stats.hpregenperlevel} per level</li>
-              <li> <img src="/img/StatModsArmorIcon.webp" alt="" />{championData.stats.armor} + {championData.stats.armorperlevel} per level</li>
+              <li><img src="/img/StatModsArmorIcon.webp" alt="" />{championData.stats.armor} + {championData.stats.armorperlevel} per level</li>
             </ul>
             <ul>
-              
-              
               <li><img src="/img/statmodsattackdamageicon.webp" alt="" /> {championData.stats.attackdamage} + {championData.stats.attackdamageperlevel} per level</li>
-              
-              <li><img src="/img/StatModsAttackSpeedIcon.webp" alt="" /> {championData.stats.attackspeed} + {championData.stats.attackspeedperlevel } per level</li>
-              
-              <li> <img src="/img/range-icon.webp"  style={{ padding: '9px' }} alt="" />  {championData.stats.attackrange}</li>
-              <li> <img src="/img/StatModsMovementSpeedIcon.webp" alt="" />  {championData.stats.movespeed}</li>
+              <li><img src="/img/StatModsAttackSpeedIcon.webp" alt="" /> {championData.stats.attackspeed} + {championData.stats.attackspeedperlevel} per level</li>
+              <li><img src="/img/range-icon.webp" style={{ padding: '9px' }} alt="" /> {championData.stats.attackrange}</li>
+              <li><img src="/img/StatModsMovementSpeedIcon.webp" alt="" /> {championData.stats.movespeed}</li>
             </ul>
           </div>
+          
         </div>
-
+        </motion.div>
         <p className='champion-lore'>{championData.lore}</p>
 
         <h2 className='title-h2'>
-        Abilities
+          Abilities
+        </h2>
 
-          </h2>
-<div className='info-video-container'>
+        <div className='info-video-container'>
+          <div>
+            {selectedSpell && (
+              <div className="selected-spell-info">
+                <h2>{selectedSpell.name}</h2>
+                <p>
+                  <span dangerouslySetInnerHTML={{ __html: formatDescription(selectedSpell.description) }} />
+                </p>
+                <p>Cost: {selectedSpell.costBurn || selectedSpell.costBurn === 0 ? selectedSpell.costBurn : 'No cost'}</p>
+                <p>Cooldown: {selectedSpell.cooldownBurn || selectedSpell.cooldownBurn === 0 ? selectedSpell.cooldownBurn : '0'}</p>
+              </div>
+            )}
+          </div>
 
-  
-<div>
-  {selectedSpell && (
-    <div className="selected-spell-info">
-      <h2>{selectedSpell.name}</h2>
-      <p>
-        <span dangerouslySetInnerHTML={{ __html: formatDescription(selectedSpell.description) }} />
-      </p>
-      <p>Cost: {selectedSpell.costBurn || selectedSpell.costBurn === 0 ? selectedSpell.costBurn : 'No cost'}</p>
-      <p>Cooldown: {selectedSpell.cooldownBurn || selectedSpell.cooldownBurn === 0 ? selectedSpell.cooldownBurn : '0'}</p>
-    </div>
-  )}
-</div>
-
-
-<div className="additional-ability-videos">
-  {abilityVideoLink === null ? (
-    <div className="passive-video-placeholder">
-      <img src="/img/placeholder.jpeg" alt="Passive Ability Placeholder" />
-      <h3>There is no video for this ability</h3>
-    </div>
-  ) : (
-    <video key={selectedSpell.id + (selectedSpellIndex === 4 ? '-passive' : '')} autoPlay={true} loop={true} muted controls={false} onError={() => setAbilityVideoLink(null)}>
-      <source src={abilityVideoLink} type="video/webm" />
-      Your browser does not support the video tag.
-    </video>
-  )}
-</div>
-
-
-
-
-
-</div>
+          <div className="additional-ability-videos">
+            {abilityVideoLink === null ? (
+              <div className="passive-video-placeholder">
+                <img src="/img/placeholder.jpeg" alt="Passive Ability Placeholder" />
+                <h3>There is no video for this ability</h3>
+              </div>
+            ) : (
+              <video key={selectedSpell.id + (selectedSpellIndex === 4 ? '-passive' : '')} autoPlay={true} loop={true} muted controls={false} onError={() => setAbilityVideoLink(null)}>
+                <source src={abilityVideoLink} type="video/webm" />
+                Your browser does not support the video tag.
+              </video>
+            )}
+          </div>
+        </div>
 
         <div className='champion-skills'>
-        
-        <div className='skills-container'>
-  {championData.spells.map((spell, index) => (
-    <div
-      key={index}
-      className={`spell ${selectedSpellIndex === index ? 'active' : ''}`}
-      onClick={() => handleSpellClick(spell, index)}
-    >
-      <img
-        src={`https://ddragon.leagueoflegends.com/cdn/${patchVersion}/img/spell/${spell.image.full}`}
-        alt={spell.name}
-      />
-      <div className='spell-details'></div>
-    </div>
-  ))}
-  <div className='short-line-vertical'></div>
-  <div
-    className={`spell ${selectedSpellIndex === 4 ? 'active' : ''}`}
-    onClick={() => handleSpellClick(championData.passive, 4)}
-  >
-    <img
-      src={`https://ddragon.leagueoflegends.com/cdn/${patchVersion}/img/passive/${championData.passive.image.full}`}
-      alt={championData.passive.name}
-    />
-    <div className='spell-details'></div>
-  </div>
-</div>
-
+          <div className='skills-container'>
+            {championData.spells.map((spell, index) => (
+              <div
+                key={index}
+                className={`spell ${selectedSpellIndex === index ? 'active' : ''}`}
+                onClick={() => handleSpellClick(spell, index)}
+              >
+                <img
+                  src={`https://ddragon.leagueoflegends.com/cdn/${patchVersion}/img/spell/${spell.image.full}`}
+                  alt={spell.name}
+                />
+                <div className='spell-details'></div>
+              </div>
+            ))}
+            <div className='short-line-vertical'></div>
+            <div
+              className={`spell ${selectedSpellIndex === 4 ? 'active' : ''}`}
+              onClick={() => handleSpellClick(championData.passive, 4)}
+            >
+              <img
+                src={`https://ddragon.leagueoflegends.com/cdn/${patchVersion}/img/passive/${championData.passive.image.full}`}
+                alt={championData.passive.name}
+              />
+              <div className='spell-details'></div>
+            </div>
+          </div>
         </div>
 
         <div className='champion-tips'>
@@ -239,7 +237,7 @@ const Champion = () => {
 
         <ChampionSkinComponent championName={championData.id} patchVersion={patchVersion} skinNums={skinNums} />
       </div>
-    </div>
+    </motion.div> // Zamykamy motion.div
   );
 }
 
