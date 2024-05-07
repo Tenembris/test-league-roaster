@@ -8,6 +8,7 @@ import Champions from './Champions';
 import NavBar from './Navbar';
 import Footer from './Footer';
 import ItemsComponent from './ItemsComponent';
+import RunesComponent from './RunesComponent';
 
 
 function App() {
@@ -21,6 +22,7 @@ function App() {
             <Route path="/champions" element={<Champions />} />
             <Route path="/champion/:name" element={<Champion />} />
             <Route path="/items" element={<ItemsComponent />} />
+            <Route path="/runes" element={<RunesComponent />} />
           </Routes>
         </CSSTransition>
       </TransitionGroup>
