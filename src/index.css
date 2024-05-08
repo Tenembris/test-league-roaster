@@ -1286,8 +1286,6 @@ backdrop-filter: blur(6.1px);
 
   }
 
-}.spell.active {
-  transform: scale(1.2); /* Kolor ramki */
 }
 
 .champion-grid.fade-in {

@@ -3,6 +3,7 @@ import { useParams, useLocation } from 'react-router-dom';
 import axios from 'axios';
 import ChampionSkinComponent from './ChampionSkinComponent';
 import { motion } from 'framer-motion'; // Importujemy motion z framer-motion
+import './index.css';
 
 const Champion = () => {
   const { name } = useParams();
