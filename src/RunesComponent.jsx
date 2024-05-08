@@ -13,6 +13,7 @@ const RunesComponent = () => {
     const [selectedRuneName, setSelectedRuneName] = useState("");
     const [selectedRuneId, setSelectedRuneId] = useState(null); // Id aktywnej runy
     const [isActiveItem, setIsActiveItem] = useState(false);
+    const [selectedCategory, setSelectedCategory] = useState(''); 
 
     // Funkcja pobierająca dane run z API dla danej kategorii
     const fetchRunesData = async (category) => {
@@ -84,6 +85,9 @@ const RunesComponent = () => {
         // Pobierz dane run dla klikniętej kategorii
         fetchRunesData(category);
         setIsActiveItem(true);
+        setSelectedCategory(category);
+        
+        console.log(category)
         
     };
 
@@ -105,6 +109,7 @@ const RunesComponent = () => {
 
     // Funkcja określająca, czy dana runa jest aktywna
     const isActiveRune = (id) => {
+        
         return selectedRuneId === id ? 'active' : '';
     };
 
@@ -150,7 +155,7 @@ const RunesComponent = () => {
                         ))}
                     </div>
                     {/* Pokaż opis wybranej runy */}
-                    <div className='runes-data'>
+                    <div className={`runes-data ${ selectedRuneId ? 'runes-data-active' : ''}`}>
                         <h2>{selectedRuneName}</h2>
                         <p dangerouslySetInnerHTML={{ __html: selectedRuneDesc }}></p>
                     </div>
@@ -172,52 +177,87 @@ const RunesComponent = () => {
 
                 
                 <div className='runes-revolver'>
-                    <motion.div 
-                               initial={{ x: 100, opacity: 0 }}
-                               animate={{ x: 0, opacity: 1 }}
-                               exit={{ x: 100, opacity: 0 }}
-                               transition={{ duration: 0.5 }}
-                    >
-                    <img src="/img/domination.png" alt="" onClick={() => handleClick('Domination')} />
-                    </motion.div>
+            <motion.div 
+                initial={{ x: 100, opacity: 0 }}
+                animate={{ x: 0, opacity: 1 }}
+                exit={{ x: 100, opacity: 0 }}
+                transition={{ duration: 0.5 }}
+            >
+                <img
+                    src="/img/domination.png"
+                    alt=""
+                    onClick={() => handleClick('Domination')}
+                    style={{ 
+                        filter: selectedCategory === 'Domination' ? 'drop-shadow(5px 5px 15px red)' : 'none',
+                        transform: selectedCategory === 'Domination' ? 'scale(1.2)' : ''
+                    }}
+                />
+            </motion.div>
                     
-                    <motion.div
-                           initial={{ x: 100, opacity: 0 }}
-                           animate={{ x: 0, opacity: 1 }}
-                           exit={{ x: 100, opacity: 0 }}
-                           transition={{ duration: 0.5 , delay: 0.1}}
-                           
-                    >
-
-                    <img src="/img/precision.png" alt="" onClick={() => handleClick('Precision')} />
-                    </motion.div>
-                    <motion.div 
-                      initial={{ x: 100, opacity: 0 }}
-                      animate={{ x: 0, opacity: 1 }}
-                      exit={{ x: 100, opacity: 0 }}
-                      transition={{ duration: 0.5 , delay: 0.2}}
-                    >
-                    <img src="/img/sorcery.png" alt="" onClick={() => handleClick('Sorcery')} />
-                    </motion.div>
-                    <motion.div 
-                    initial={{ x: 100, opacity: 0 }}
-                    animate={{ x: 0, opacity: 1 }}
-                    exit={{ x: 100, opacity: 0 }}
-                    transition={{ duration: 0.5 , delay: 0.3}}
-                    >
-                    <img src="/img/resolve.png" alt="" onClick={() => handleClick('Resolve')} />
-                    </motion.div>
+            <motion.div
+                initial={{ x: 100, opacity: 0 }}
+                animate={{ x: 0, opacity: 1 }}
+                exit={{ x: 100, opacity: 0 }}
+                transition={{ duration: 0.5 , delay: 0.1}}
+            >
+                <img
+                    src="/img/precision.png"
+                    alt=""
+                    onClick={() => handleClick('Precision')}
+                    style={{ filter: selectedCategory === 'Precision' ? 'drop-shadow(5px 5px 15px yellow)' : 'none', 
+                    transform: selectedCategory === 'Precision' ? 'scale(1.2)' : ''
+                     }}
+                />
+            </motion.div>
                     
-                    <motion.div 
-                    initial={{ x: 100, opacity: 0 }}
-                    animate={{ x: 0, opacity: 1 }}
-                    exit={{ x: 100, opacity: 0 }}
-                    transition={{ duration: 0.5 , delay: 0.4}}
-                    >
-                    <img src="/img/inspirations.png" alt="" onClick={() => handleClick('Inspiration')} />
-                    </motion.div>
+            <motion.div 
+                initial={{ x: 100, opacity: 0 }}
+                animate={{ x: 0, opacity: 1 }}
+                exit={{ x: 100, opacity: 0 }}
+                transition={{ duration: 0.5 , delay: 0.2}}
+            >
+                <img
+                    src="/img/sorcery.png"
+                    alt=""
+                    onClick={() => handleClick('Sorcery')}
+                    style={{ filter: selectedCategory === 'Sorcery' ? 'drop-shadow(5px 5px 15px blue)' : 'none' ,
+                    transform: selectedCategory === 'Sorcery' ? 'scale(1.2)' : ''}}
+                   
+                />
+            </motion.div>
                     
-                </div>
+            <motion.div 
+                initial={{ x: 100, opacity: 0 }}
+                animate={{ x: 0, opacity: 1 }}
+                exit={{ x: 100, opacity: 0 }}
+                transition={{ duration: 0.5 , delay: 0.3}}
+            >
+                <img
+                    src="/img/resolve.png"
+                    alt=""
+                    onClick={() => handleClick('Resolve')}
+                    style={{ filter: selectedCategory === 'Resolve' ? 'drop-shadow(5px 5px 15px green)' : 'none',
+                    transform: selectedCategory === 'Resolve' ? 'scale(1.2)' : '' }}
+                    
+                />
+            </motion.div>
+                    
+            <motion.div 
+                initial={{ x: 100, opacity: 0 }}
+                animate={{ x: 0, opacity: 1 }}
+                exit={{ x: 100, opacity: 0 }}
+                transition={{ duration: 0.5 , delay: 0.4}}
+            >
+                <img
+                    src="/img/inspirations.png"
+                    alt=""
+                    onClick={() => handleClick('Inspiration')}
+                    style={{ filter: selectedCategory === 'Inspiration' ? 'drop-shadow(5px 5px 15px purple)' : 'none',
+                    transform: selectedCategory === 'Inspiration' ? 'scale(1.2)' : ''
+                     }}
+                />
+            </motion.div>
+        </div>
             </div>
         </div>
     );

@@ -199,6 +199,8 @@
     width: 25%;
     background-color: black;
     padding: 10px;
+    
+    
   }
   
   .runes-data {
@@ -208,9 +210,18 @@
     clip-path: polygon(0 0, 100% 0, 75% 100%, 0 100%); 
     padding: 50px 100px 50px 50px;
     width: 600px;
-    height: 300px
+    height: 300px;
+     left: -200vw;
+    transition: 0.6s ease;
+    opacity: 0;
 
 
+  }
+
+
+  .runes-data-active {
+    left: 0;
+    opacity: 1;
   }
 
 
