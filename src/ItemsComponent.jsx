@@ -203,7 +203,7 @@ const ItemsComponent = () => {
                 
                 {groupedItems.starter.map((item, index) => (
                   <div key={index} className="item" onClick={() => handleItemClick(item.id)}>
-                    <img src={item.imageUrl} alt={item.name} />
+                    <img src={item.imageUrl} alt={item.name} loading="lazy"/>
                     <span>{item.gold.total}</span>
 
                   </div>
@@ -218,7 +218,7 @@ const ItemsComponent = () => {
                 
                 {groupedItems.epic.map((item, index) => (
                   <div key={index} className="item" onClick={() => handleItemClick(item.id)}>
-                    <img src={item.imageUrl} alt={item.name} />
+                    <img src={item.imageUrl} alt={item.name} loading="lazy" />
                     <span>{item.gold.total}</span>
                   </div>
                 ))}
@@ -233,7 +233,7 @@ const ItemsComponent = () => {
                 
                 {groupedItems.legendary.map((item, index) => (
                   <div key={index} className="item" onClick={() => handleItemClick(item.id)}>
-                     <img src={item.imageUrl} alt={item.name} style={item.Ornn === "Ornn" ? { filter: 'sepia(100%) saturate(1000%) hue-rotate(30deg)' } : null} />
+                     <img src={item.imageUrl} alt={item.name} loading="lazy" style={item.Ornn === "Ornn" ? { filter: 'sepia(100%) saturate(1000%) hue-rotate(30deg)' } : null} />
                     <span>{item.gold.total}</span>
                     
                   </div>
@@ -248,7 +248,7 @@ const ItemsComponent = () => {
               
               {groupedItems.other.map((item, index) => (
                 <div key={index} className="item" onClick={() => handleItemClick(item.id)}>
-                  <img src={item.imageUrl} alt={item.name} style={item.Ornn === 'Ornn' ? { filter: 'sepia(100%) saturate(500%) hue-rotate(30deg)' } : null}  />
+                  <img src={item.imageUrl} alt={item.name} loading="lazy" style={item.Ornn === 'Ornn' ? { filter: 'sepia(100%) saturate(500%) hue-rotate(30deg)' } : null}  />
                   <span>{item.gold.total}</span>
                  
                 </div>
